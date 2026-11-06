@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLADLEN S. // AI Automation & Web Engineering Studio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js Library for 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #030712;
+            color: #f1f5f9;
+        }
+        h1, h2, h3, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .chat-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: rgba(6, 182, 212, 0.3);
+            border-radius: 4px;
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+
+    <!-- Glowing Background Orbs -->
+    <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none"></div>
+    <div class="fixed top-1/2 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center font-heading font-bold text-white text-xl shadow-lg shadow-cyan-500/20">
+                    V
+                </div>
+                <div>
+                    <span class="font-heading font-bold text-lg tracking-tight text-white">VLADLEN<span class="text-cyan-400">.DEV</span></span>
+                    <span class="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Available for Hire
+                    </span>
+                </div>
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+                <a href="#ai-assistant" class="hover:text-cyan-400 transition-colors">Smart AI Demo</a>
+                <a href="#network" class="hover:text-cyan-400 transition-colors">3D Network</a>
+                <a href="#stack" class="hover:text-cyan-400 transition-colors">Tech Stack</a>
+                <a href="#faq" class="hover:text-cyan-400 transition-colors">FAQ</a>
+            </nav>
+
+            <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-6 py-2.5 rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:scale-105 text-sm">
+                Discuss Project
+            </button>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO WITH 3D CORE OBJECT -->
+    <section class="relative pt-36 pb-20 lg:pt-44 lg:pb-32 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-cyan-400 text-xs font-semibold tracking-wide uppercase">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    AI Agents • Automations • Web Engineering
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-heading font-extrabold text-white leading-tight">
+                    Smart Web Platforms & <span class="gradient-text">Autonomous AI Workflows</span>
+                </h1>
+
+                <p class="text-lg text-slate-300 leading-relaxed max-w-xl">
+                    I build high-speed websites, custom OpenAI Chatbots, and automated n8n/Make pipelines that run your business on autopilot 24/7.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <button onclick="openModal()" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-xl shadow-cyan-500/20 transition-all text-center flex items-center justify-center gap-2">
+                        Start a Project <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <a href="#ai-assistant" class="glass-panel hover:bg-slate-800/60 text-slate-200 font-semibold px-8 py-4 rounded-xl border border-slate-700 transition-all text-center flex items-center justify-center gap-2">
+                        <i data-lucide="bot" class="w-5 h-5 text-cyan-400"></i> Test AI Assistant
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-6">
+                    <div>
+                        <div class="text-3xl font-heading font-bold text-white">100%</div>
+                        <div class="text-xs text-slate-400 mt-1">Automated Workflows</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-heading font-bold text-cyan-400">&lt; 2s</div>
+                        <div class="text-xs text-slate-400 mt-1">AI Response Time</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-heading font-bold text-purple-400">95+</div>
+                        <div class="text-xs text-slate-400 mt-1">PageSpeed Performance</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Interactive Canvas -->
+            <div class="lg:col-span-5 relative">
+                <div class="w-full h-[450px] glass-panel rounded-3xl relative overflow-hidden border border-cyan-500/20 shadow-2xl">
+                    <div id="3d-core-canvas" class="w-full h-full cursor-grab"></div>
+                    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center px-4 py-2 bg-slate-950/70 backdrop-blur-md rounded-xl text-xs text-slate-400">
+                        <span class="flex items-center gap-1.5"><i data-lucide="mouse-pointer" class="w-3.5 h-3.5 text-cyan-400"></i> Drag to rotate 3D Core</span>
+                        <span class="text-cyan-400 font-mono">Three.js Engine</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SMART AI ASSISTANT DEMO (UPGRADED NLP + OPENAI API CONNECT) -->
+    <section id="ai-assistant" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="glass-panel rounded-3xl p-8 lg:p-12 border border-cyan-500/30 relative overflow-hidden">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-lg text-xs font-semibold">
+                        <i data-lucide="bot" class="w-4 h-4"></i> AI Knowledge Assistant
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-heading font-bold text-white">Ask Me Any Question</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Test this AI agent! It understands context, technical stack, pricing, and workflow details. I can train and deploy a custom bot just like this for your business.
+                    </p>
+
+                    <!-- Quick Prompt Buttons -->
+                    <div class="space-y-2 pt-2">
+                        <span class="text-xs text-slate-400 font-medium">Click to ask:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="askPreset('Can you integrate ChatGPT into my WordPress or React website?')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 transition-all text-left">
+                                🔌 Can you integrate ChatGPT into my website?
+                            </button>
+                            <button onclick="askPreset('What is the difference between n8n and Zapier?')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 transition-all text-left">
+                                ⚡ Difference between n8n and Zapier?
+                            </button>
+                            <button onclick="askPreset('What guarantees do you offer for bug fixes?')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 transition-all text-left">
+                                🛡️ What guarantees do you offer?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat UI Container -->
+                <div class="lg:col-span-7 bg-slate-950/90 rounded-2xl border border-slate-800 h-[500px] flex flex-col overflow-hidden shadow-2xl">
+                    <!-- Chat Header -->
+                    <div class="p-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400">
+                                <i data-lucide="bot" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-white">Vladlen AI Concierge</div>
+                                <div class="text-[10px] text-emerald-400" id="ai-status">● Smart Knowledge Engine Active</div>
+                            </div>
+                        </div>
+
+                        <!-- Optional OpenAI Key Toggle -->
+                        <button onclick="promptApiKey()" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-cyan-400 px-2.5 py-1 rounded border border-slate-700 flex items-center gap-1.5 transition-all">
+                            <i data-lucide="key" class="w-3.5 h-3.5"></i> <span id="key-btn-text">🔑 Add OpenAI Key</span>
+                        </button>
+                    </div>
+
+                    <!-- Chat Messages Area -->
+                    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 chat-scroll text-sm">
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="bot" class="w-4 h-4"></i>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 text-slate-200 max-w-[85%]">
+                                Hello! I am Vladlen's AI Assistant. Ask me anything about custom web applications, OpenAI API integration, n8n/Make automations, hourly rates, or project timelines!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator (Hidden by default) -->
+                    <div id="typing-indicator" class="px-4 py-2 text-xs text-slate-500 flex items-center gap-2 hidden">
+                        <span class="text-cyan-400 font-mono">AI thinking</span>
+                        <div class="flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full typing-dot"></span>
+                            <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full typing-dot"></span>
+                            <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full typing-dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <form onsubmit="handleUserMessage(event)" class="p-3 bg-slate-900 border-t border-slate-800 flex gap-2">
+                        <input id="user-input" type="text" placeholder="Ask any question (e.g., 'How long does a landing page take?')" class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400">
+                        <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl transition-all">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 3D GLOBE NETWORK -->
+    <section id="network" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 h-[400px] glass-panel rounded-3xl relative overflow-hidden border border-purple-500/20">
+                <div id="3d-globe-canvas" class="w-full h-full cursor-grab"></div>
+                <div class="absolute top-4 left-4 bg-slate-950/80 px-3 py-1.5 rounded-lg border border-purple-500/30 text-[11px] font-mono text-purple-300">
+                    3D Global Data Nodes // Active
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-6">
+                <div class="text-xs font-bold text-purple-400 uppercase tracking-wider">// Global Data Infrastructure</div>
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-white">24/7 Autonomous Operations Across The Globe</h2>
+                <p class="text-slate-300 leading-relaxed">
+                    Your web applications and automated workflows don't sleep. Whether a customer visits from Europe or America, your AI chatbots qualify leads and sync data instantly.
+                </p>
+
+                <div class="space-y-3 font-medium text-sm">
+                    <div class="flex items-center gap-3 p-3.5 glass-panel rounded-xl">
+                        <i data-lucide="check-circle-2" class="text-cyan-400 w-5 h-5"></i>
+                        <span>Zero Manual Data Entry (Form → CRM → Email)</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3.5 glass-panel rounded-xl">
+                        <i data-lucide="check-circle-2" class="text-purple-400 w-5 h-5"></i>
+                        <span>Instant Auto-Responses to Leads in &lt; 5 Seconds</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3.5 glass-panel rounded-xl">
+                        <i data-lucide="check-circle-2" class="text-emerald-400 w-5 h-5"></i>
+                        <span>Reliable Cloud Infrastructure (n8n, Make, OpenAI)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SERVICES MATRIX (6 CARDS) -->
+    <section id="services" class="py-24 max-w-7xl mx-auto px-6 space-y-16">
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <div class="text-xs font-bold text-cyan-400 uppercase tracking-widest">// Core Solutions</div>
+            <h2 class="text-3xl sm:text-5xl font-heading font-bold text-white">What I Build For Your Business</h2>
+            <p class="text-slate-400 text-base">Complete web development and AI automation services tailored to your goals.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 space-y-4 group">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center border border-cyan-500/20 group-hover:scale-110 transition-transform">
+                    <i data-lucide="bot" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">AI Support & Sales Chatbots</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Custom ChatGPT-powered bots integrated into your website. Answers FAQs, collects client emails, and books appointments 24/7.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-purple-500/50 transition-all duration-300 space-y-4 group">
+                <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform">
+                    <i data-lucide="workflow" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">n8n & Make Automations</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Connect your website forms with CRMs, Telegram, Google Sheets, and Email sequences automatically using webhooks.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 space-y-4 group">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                    <i data-lucide="layout" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">High-Converting Landing Pages</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Fast, responsive websites engineered with HTML/CSS, Tailwind, JavaScript, or WordPress to convert visitors into buyers.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all duration-300 space-y-4 group">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20 group-hover:scale-110 transition-transform">
+                    <i data-lucide="globe" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">WordPress & Custom Web Apps</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Clean, customizable WordPress sites or React frontend applications built for security, speed, and easy management.</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-amber-500/50 transition-all duration-300 space-y-4 group">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20 group-hover:scale-110 transition-transform">
+                    <i data-lucide="link" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">API Integrations</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Connect third-party REST APIs (Stripe, OpenAI, Hubspot, Mailchimp) smoothly into your existing business stack.</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-pink-500/50 transition-all duration-300 space-y-4 group">
+                <div class="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-400 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Speed & Performance Tuning</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Refactoring slow websites, fixing bugs, and optimizing page loading times to achieve 95+ scores on Google PageSpeed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: AUTOMATION WORKFLOW VISUALIZER -->
+    <section class="py-20 max-w-7xl mx-auto px-6">
+        <div class="glass-panel rounded-3xl p-8 lg:p-12 border border-slate-800 space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-heading font-bold text-white">How An Automated Funnel Works</h2>
+                <p class="text-slate-400 text-sm">Example of an automated pipeline I build using n8n / Make & OpenAI.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-4 pt-4">
+                <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 text-center">
+                    <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto font-bold text-sm">1</div>
+                    <div class="font-bold text-white text-sm">Lead Fills Form</div>
+                    <div class="text-xs text-slate-400">Visitor submits booking request on your website.</div>
+                </div>
+
+                <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 text-center">
+                    <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center mx-auto font-bold text-sm">2</div>
+                    <div class="font-bold text-white text-sm">OpenAI Analysis</div>
+                    <div class="text-xs text-slate-400">AI qualifies lead urgency and prepares personalized answer.</div>
+                </div>
+
+                <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 text-center">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto font-bold text-sm">3</div>
+                    <div class="font-bold text-white text-sm">n8n / Make Sync</div>
+                    <div class="text-xs text-slate-400">Pipeline saves data to CRM & Google Sheets instantly.</div>
+                </div>
+
+                <div class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-3 text-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto font-bold text-sm">4</div>
+                    <div class="font-bold text-white text-sm">Instant Alert</div>
+                    <div class="text-xs text-slate-400">Notification sent to your Telegram or Email in seconds.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: TECH STACK SHOWCASE -->
+    <section id="stack" class="py-20 max-w-7xl mx-auto px-6 space-y-12">
+        <div class="text-center max-w-2xl mx-auto space-y-3">
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white">My Technical Toolkit</h2>
+            <p class="text-slate-400 text-sm">Battle-tested technologies used to deliver clean, modern solutions.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-cyan-400 border border-cyan-500/20">🤖 OpenAI API / GPT-4o</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-purple-400 border border-purple-500/20">⚡ n8n.io Workflow</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-emerald-400 border border-emerald-500/20">🧩 Make.com (Integromat)</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-amber-400 border border-amber-500/20">⚡ Zapier</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-blue-400 border border-blue-500/20">💻 JavaScript / React</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-teal-400 border border-teal-500/20">🎨 Tailwind CSS</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-indigo-400 border border-indigo-500/20">🌐 WordPress</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-pink-400 border border-pink-500/20">🐍 Python</span>
+            <span class="px-5 py-3 glass-panel rounded-xl text-sm font-semibold text-slate-300 border border-slate-700">🔌 REST APIs & Webhooks</span>
+        </div>
+    </section>
+
+    <!-- SECTION 7: INTERACTIVE FAQ -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto px-6 space-y-10">
+        <div class="text-center space-y-3">
+            <h2 class="text-3xl font-heading font-bold text-white">Frequently Asked Questions</h2>
+            <p class="text-slate-400 text-sm">Everything you need to know about working together.</p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-2 cursor-pointer" onclick="toggleFaq(1)">
+                <div class="flex justify-between items-center font-bold text-white text-base">
+                    <span>How long does it take to complete a project?</span>
+                    <i data-lucide="chevron-down" id="faq-icon-1" class="w-5 h-5 text-cyan-400 transition-transform"></i>
+                </div>
+                <div id="faq-ans-1" class="text-slate-400 text-sm leading-relaxed hidden pt-2">
+                    Small landing pages and simple AI chatbots usually take 2-4 days. Full automation setups or complex websites take 5-10 days.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-2 cursor-pointer" onclick="toggleFaq(2)">
+                <div class="flex justify-between items-center font-bold text-white text-base">
+                    <span>Do I need to pay for OpenAI or n8n subscriptions separately?</span>
+                    <i data-lucide="chevron-down" id="faq-icon-2" class="w-5 h-5 text-cyan-400 transition-transform"></i>
+                </div>
+                <div id="faq-ans-2" class="text-slate-400 text-sm leading-relaxed hidden pt-2">
+                    Yes, third-party services (like OpenAI API keys or n8n cloud hosting) are paid directly to the service providers. I help you set up everything easily.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-2 cursor-pointer" onclick="toggleFaq(3)">
+                <div class="flex justify-between items-center font-bold text-white text-base">
+                    <span>Will the website work properly on mobile devices?</span>
+                    <i data-lucide="chevron-down" id="faq-icon-3" class="w-5 h-5 text-cyan-400 transition-transform"></i>
+                </div>
+                <div id="faq-ans-3" class="text-slate-400 text-sm leading-relaxed hidden pt-2">
+                    Absolutely! Every website I develop is 100% mobile-responsive and tested on smartphones, tablets, and desktops.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT CALLOUT -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-16 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="space-y-2 text-center md:text-left">
+                <div class="text-2xl font-heading font-bold text-white">Ready to automate your business?</div>
+                <p class="text-slate-400 text-sm">Let's discuss your web project or AI integration right now.</p>
+            </div>
+            <button onclick="openModal()" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-xl shadow-cyan-500/20 transition-all">
+                Get Free Project Estimate
+            </button>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-slate-900 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <div>© 2026 VLADLEN S. // All rights reserved.</div>
+            <div>Built for Professional Upwork Portfolio Demonstration.</div>
+        </div>
+    </footer>
+
+    <!-- MODAL FORM -->
+    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-panel p-8 rounded-3xl max-w-md w-full border border-cyan-500/30 relative space-y-6">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-heading font-bold text-white">Start Your Project</h3>
+            <p class="text-slate-400 text-xs">Fill out the form below to receive a technical response within hours.</p>
+            
+            <form onsubmit="handleForm(event)" class="space-y-4 text-sm">
+                <input type="text" required placeholder="Your Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400">
+                <input type="email" required placeholder="Business Email" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400">
+                <textarea rows="3" placeholder="Tell me about your website or AI automation needs..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400"></textarea>
+                <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
+                    Send Proposal Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        lucide.createIcons();
+
+        // -------------------------------------------------------------
+        // 1. THREE.JS SCENE 1: HERO 3D CORE
+        // -------------------------------------------------------------
+        const container1 = document.getElementById('3d-core-canvas');
+        const scene1 = new THREE.Scene();
+        const camera1 = new THREE.PerspectiveCamera(75, container1.clientWidth / container1.clientHeight, 0.1, 1000);
+        camera1.position.z = 2.8;
+
+        const renderer1 = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer1.setSize(container1.clientWidth, container1.clientHeight);
+        renderer1.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container1.appendChild(renderer1.domElement);
+
+        const geo1 = new THREE.IcosahedronGeometry(1.1, 0);
+        const mat1 = new THREE.MeshStandardMaterial({
+            color: 0x06b6d4,
+            wireframe: true,
+            emissive: 0x0284c7,
+            emissiveIntensity: 0.5
+        });
+        const mesh1 = new THREE.Mesh(geo1, mat1);
+        scene1.add(mesh1);
+
+        const light1 = new THREE.PointLight(0x38bdf8, 2, 100);
+        light1.position.set(5, 5, 5);
+        scene1.add(light1);
+        scene1.add(new THREE.AmbientLight(0xffffff, 0.6));
+
+        let isDrag1 = false, prevMouse1 = { x: 0, y: 0 };
+        container1.addEventListener('mousedown', () => isDrag1 = true);
+        window.addEventListener('mouseup', () => isDrag1 = false);
+        container1.addEventListener('mousemove', (e) => {
+            if (!isDrag1) return;
+            mesh1.rotation.y += (e.clientX - prevMouse1.x) * 0.008;
+            mesh1.rotation.x += (e.clientY - prevMouse1.y) * 0.008;
+            prevMouse1 = { x: e.clientX, y: e.clientY };
+        });
+
+        // -------------------------------------------------------------
+        // 2. THREE.JS SCENE 2: 3D GLOBE NETWORK
+        // -------------------------------------------------------------
+        const container2 = document.getElementById('3d-globe-canvas');
+        const scene2 = new THREE.Scene();
+        const camera2 = new THREE.PerspectiveCamera(60, container2.clientWidth / container2.clientHeight, 0.1, 1000);
+        camera2.position.z = 2.5;
+
+        const renderer2 = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer2.setSize(container2.clientWidth, container2.clientHeight);
+        renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container2.appendChild(renderer2.domElement);
+
+        const globeGroup = new THREE.Group();
+        const sphereGeo = new THREE.SphereGeometry(1.1, 32, 32);
+        const sphereMat = new THREE.PointsMaterial({ color: 0x818cf8, size: 0.02, transparent: true, opacity: 0.8 });
+        const globeParticles = new THREE.Points(sphereGeo, sphereMat);
+        globeGroup.add(globeParticles);
+
+        const ringGeo = new THREE.RingGeometry(1.3, 1.32, 64);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, wireframe: true });
+        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+        ringMesh.rotation.x = Math.PI / 2.3;
+        globeGroup.add(ringMesh);
+
+        scene2.add(globeGroup);
+        scene2.add(new THREE.AmbientLight(0xffffff, 0.8));
+
+        let isDrag2 = false, prevMouse2 = { x: 0, y: 0 };
+        container2.addEventListener('mousedown', () => isDrag2 = true);
+        window.addEventListener('mouseup', () => isDrag2 = false);
+        container2.addEventListener('mousemove', (e) => {
+            if (!isDrag2) return;
+            globeGroup.rotation.y += (e.clientX - prevMouse2.x) * 0.008;
+            globeGroup.rotation.x += (e.clientY - prevMouse2.y) * 0.008;
+            prevMouse2 = { x: e.clientX, y: e.clientY };
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            if (!isDrag1) {
+                mesh1.rotation.y += 0.004;
+                mesh1.rotation.x += 0.002;
+            }
+            if (!isDrag2) {
+                globeGroup.rotation.y += 0.003;
+            }
+            renderer1.render(scene1, camera1);
+            renderer2.render(scene2, camera2);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera1.aspect = container1.clientWidth / container1.clientHeight;
+            camera1.updateProjectionMatrix();
+            renderer1.setSize(container1.clientWidth, container1.clientHeight);
+
+            camera2.aspect = container2.clientWidth / container2.clientHeight;
+            camera2.updateProjectionMatrix();
+            renderer2.setSize(container2.clientWidth, container2.clientHeight);
+        });
+
+        // -------------------------------------------------------------
+        // 3. ADVANCED SMART AI CHATBOT ENGINE
+        // -------------------------------------------------------------
+        let openAiKey = localStorage.getItem('vladlen_openai_key') || '';
+
+        if (openAiKey) {
+            document.getElementById('key-btn-text').innerText = '✓ OpenAI Active';
+            document.getElementById('ai-status').innerText = '● Live GPT-4o-mini Connected';
+        }
+
+        function promptApiKey() {
+            const key = prompt('Enter your OpenAI API key (sk-...) for live GPT-4 responses:', openAiKey);
+            if (key !== null) {
+                openAiKey = key.trim();
+                localStorage.setItem('vladlen_openai_key', openAiKey);
+                if (openAiKey) {
+                    document.getElementById('key-btn-text').innerText = '✓ OpenAI Active';
+                    document.getElementById('ai-status').innerText = '● Live GPT-4o-mini Connected';
+                    alert('OpenAI API Key activated! The bot will now answer using real-time GPT-4o-mini.');
+                } else {
+                    document.getElementById('key-btn-text').innerText = '🔑 Add OpenAI Key';
+                    document.getElementById('ai-status').innerText = '● Smart Knowledge Engine Active';
+                }
+            }
+        }
+
+        const chatMessages = document.getElementById('chat-messages');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        // Comprehensive NLP Knowledge Vectors
+        const nlpKnowledge = [
+            {
+                intent: 'chatgpt_integration',
+                keywords: ['chatgpt', 'openai', 'integrate', 'connect', 'embed', 'bot on site', 'plugin'],
+                response: "Yes! I specialize in connecting OpenAI API (GPT-4o) directly into websites (WordPress, React, HTML). I train the bot on your business documents so it answers FAQ, collects lead emails, and passes data to your CRM automatically."
+            },
+            {
+                intent: 'n8n_vs_zapier',
+                keywords: ['n8n', 'zapier', 'make', 'integromat', 'difference', 'compare'],
+                response: "n8n and Make are much more powerful and cost-effective than Zapier. **n8n** allows self-hosting for unlimited tasks and complex logic loops, while **Make** offers visual node pipelines. I help clients migrate away from high Zapier bills!"
+            },
+            {
+                intent: 'pricing_rates',
+                keywords: ['price', 'pricing', 'cost', 'rate', 'hourly', 'how much', 'charge', 'money', 'budget'],
+                response: "My base hourly rate on Upwork is **$15/hr**. Fixed-price projects range from **$50 to $150** for simple landing pages or AI bots, and **$200+** for full web apps with automated n8n pipelines."
+            },
+            {
+                intent: 'timelines',
+                keywords: ['time', 'long', 'timeline', 'days', 'deadline', 'fast', 'turnaround'],
+                response: "⚡ Standard turnarounds:\n• Simple Landing Page or AI Bot: **2 - 4 Days**\n• Full Automation Pipeline + CRM Integration: **3 - 6 Days**\n• Complex Web Applications: **1 - 2 Weeks**"
+            },
+            {
+                intent: 'wordpress_vs_custom',
+                keywords: ['wordpress', 'custom', 'react', 'elementor', 'webflow', 'stack', 'html'],
+                response: "I build both! If you want easy content editing, I build custom lightweight **WordPress** sites. If you need maximum speed, security, and 3D graphics, I engineer custom **React / HTML5 + Tailwind CSS** platforms."
+            },
+            {
+                intent: 'guarantees',
+                keywords: ['guarantee', 'bug', 'fix', 'support', 'revision', 'satisfied', 'refund', 'warranty'],
+                response: "🛡️ Every project includes **unlimited free revisions** until you are 100% satisfied, plus **30 days of free bug-fix support** after delivery to ensure everything runs smoothly."
+            },
+            {
+                intent: 'contact_hire',
+                keywords: ['hire', 'contact', 'call', 'start', 'begin', 'upwork', 'message', 'email'],
+                response: "Ready to get started? Click the **'Discuss Project'** button in the header or message me on Upwork. I'll provide a full technical roadmap within 2 hours!"
+            }
+        ];
+
+        function addMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex gap-3 ${isUser ? 'justify-end' : ''}`;
+            
+            if (isUser) {
+                msgDiv.innerHTML = `
+                    <div class="bg-cyan-500/20 border border-cyan-400/30 text-white rounded-2xl p-3.5 max-w-[85%]">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                msgDiv.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 text-slate-200 max-w-[85%]">
+                        ${formatted}
+                    </div>
+                `;
+            }
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function showTyping(show) {
+            if (show) {
+                typingIndicator.classList.remove('hidden');
+            } else {
+                typingIndicator.classList.add('hidden');
+            }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function askPreset(question) {
+            addMessage(question, true);
+            processMessage(question);
+        }
+
+        function handleUserMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('user-input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            addMessage(text, true);
+            input.value = '';
+            processMessage(text);
+        }
+
+        async function processMessage(userQuery) {
+            showTyping(true);
+
+            // 1. IF REAL OPENAI API KEY IS PROVIDED
+            if (openAiKey) {
+                try {
+                    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${openAiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-4o-mini',
+                            messages: [
+                                { role: 'system', content: 'You are Vladlen S., an expert AI Automation & Web Engineer specializing in OpenAI API, n8n, Make, React, WordPress, and high-converting landing pages. Answer politely, concisely, and emphasize high quality.' },
+                                { role: 'user', content: userQuery }
+                            ],
+                            max_tokens: 250
+                        })
+                    });
+                    const data = await res.json();
+                    showTyping(false);
+                    if (data.choices && data.choices[0]) {
+                        addMessage(data.choices[0].message.content, false);
+                    } else {
+                        addMessage("⚠️ OpenAI API Key Error. Falling back to offline knowledge engine...", false);
+                        fallbackNlp(userQuery);
+                    }
+                    return;
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+            // 2. SMART OFFLINE NLP ENGINE FALLBACK
+            setTimeout(() => {
+                showTyping(false);
+                fallbackNlp(userQuery);
+            }, 800);
+        }
+
+        function fallbackNlp(query) {
+            const lower = query.toLowerCase();
+            let bestMatch = null;
+            let highestScore = 0;
+
+            nlpKnowledge.forEach(item => {
+                let score = 0;
+                item.keywords.forEach(kw => {
+                    if (lower.includes(kw)) score += 1;
+                });
+                if (score > highestScore) {
+                    highestScore = score;
+                    bestMatch = item;
+                }
+            });
+
+            if (bestMatch && highestScore > 0) {
+                addMessage(bestMatch.response, false);
+            } else {
+                addMessage(`That's a great question! Vladlen customizes solutions for specific business requirements. He works with **OpenAI API, n8n automations, React, and WordPress**. \n\nClick **"Discuss Project"** above to get a tailored plan for your project!`, false);
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 4. FAQ ACCORDION TOGGLE
+        // -------------------------------------------------------------
+        function toggleFaq(id) {
+            const ans = document.getElementById(`faq-ans-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            ans.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // -------------------------------------------------------------
+        // 5. MODAL CONTROLS
+        // -------------------------------------------------------------
+        const modal = document.getElementById('modal');
+        function openModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+        function handleForm(e) {
+            e.preventDefault();
+            alert('🚀 Proposal Request Sent! (Upwork Demonstration)');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
